@@ -12,7 +12,7 @@ body {
 .inicio {
   display: block;
   width: 30%;
-  height: 420px;
+  height: 500px;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 40px;
@@ -38,11 +38,11 @@ body {
   margin: 0;
   line-height: 1;
 }
-.inicio .input {
+.inicio .inputNombre {
   display: block;
   text-align: center;
 }
-.inicio .input input {
+.inicio .inputNombre input {
   width: 300px;
 }
 .inicio .question {
@@ -72,6 +72,21 @@ body {
   background-color: #ff9802;
   border-radius: 10px;
   border: none;
+}
+.inicio .error {
+  display: none;
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  height: 40px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+.inicio .error .errormsg {
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  margin: 0;
 }
 
 .main-container {

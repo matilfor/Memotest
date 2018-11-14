@@ -12,7 +12,7 @@ body{
 .inicio{
     display: block;
     width: 30%;
-    height: 420px;
+    height: 500px;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 40px;
@@ -37,7 +37,7 @@ body{
             line-height: 1;
         }
     }
-    .input{
+    .inputNombre{
         display: block;
         text-align: center;
         input{
@@ -70,6 +70,21 @@ body{
             background-color: #ff9802;
             border-radius: 10px;
             border: none;
+        }
+    }
+    .error{
+        display: none;
+        text-align: center;
+        width: 300px;
+        margin: auto;
+        height: 40px;
+        margin-top: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        .errormsg{
+            font-family: 'NTR', sans-serif;
+            font-size: 20px;
+            margin: 0;
         }
     }
 }
