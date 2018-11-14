@@ -1,62 +1,78 @@
 body {
-  margin: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
   background-size: cover;
-  background-image: url("../img/fondo.jpg"); }
+  background-image: url("../img/fondo.jpg");
+}
 
 .inicio {
   display: block;
-  width: 60%;
+  width: 30%;
   height: 420px;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 40px;
   border: 8px solid black;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.4); }
-  .inicio .text-inicio {
-    display: block;
-    text-align: center;
-    margin: 20px; }
-    .inicio .text-inicio .title {
-      font-family: 'Pacifico', cursive;
-      color: #38acd5;
-      font-weight: bold;
-      font-size: 40px;
-      line-height: 2; }
-    .inicio .text-inicio p {
-      font-family: 'NTR', sans-serif;
-      font-size: 20px;
-      margin: 0;
-      line-height: 1; }
-  .inicio .input {
-    display: block;
-    text-align: center; }
-    .inicio .input input {
-      width: 300px; }
-  .inicio .question {
-    display: block;
-    text-align: center;
-    margin-top: 18px;
-    margin-bottom: 8px; }
-    .inicio .question p {
-      font-family: 'NTR', sans-serif;
-      font-size: 20px;
-      margin: 0;
-      line-height: 1; }
-  .inicio .botones {
-    display: block;
-    text-align: center; }
-    .inicio .botones button {
-      width: 300px;
-      display: block;
-      margin: auto;
-      height: 40px;
-      margin-top: 10px;
-      font-family: 'NTR', sans-serif;
-      font-size: 20px;
-      background-color: #ff9802;
-      border-radius: 10px;
-      border: none; }
+  background: rgba(255, 255, 255, 0.4);
+}
+.inicio .text-inicio {
+  display: block;
+  text-align: center;
+  margin: 20px;
+}
+.inicio .text-inicio .title {
+  font-family: "Pacifico", cursive;
+  color: #38acd5;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 2;
+}
+.inicio .text-inicio p {
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1;
+}
+.inicio .input {
+  display: block;
+  text-align: center;
+}
+.inicio .input input {
+  width: 300px;
+}
+.inicio .question {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+.inicio .question p {
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1;
+}
+.inicio .botones {
+  display: block;
+  text-align: center;
+}
+.inicio .botones button {
+  width: 300px;
+  display: block;
+  margin: auto;
+  height: 40px;
+  margin-top: 10px;
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  background-color: #ff9802;
+  border-radius: 10px;
+  border: none;
+}
 
 .main-container {
   display: block;
@@ -66,53 +82,88 @@ body {
   margin-bottom: 40px;
   border: 8px solid black;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.4); }
-  .main-container .second-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap; }
-    .main-container .second-container .text-container {
-      text-align: center; }
-      .main-container .second-container .text-container .title {
-        font-family: 'Pacifico', cursive;
-        color: #38acd5;
-        font-weight: bold;
-        font-size: 40px;
-        line-height: 1; }
-      .main-container .second-container .text-container p {
-        font-family: 'NTR', sans-serif;
-        font-size: 20px;
-        margin: 0;
-        line-height: 1; }
-      .main-container .second-container .text-container .p-top {
-        font-family: 'NTR', sans-serif;
-        font-size: 30px;
-        margin: 0; }
-    .main-container .second-container .img-container {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      justify-content: center;
-      margin: auto; }
-      .main-container .second-container .img-container .card {
-        border-style: solid;
-        border-color: #ff9802;
-        width: 23%;
-        height: 200px;
-        margin: 5px; }
-        .main-container .second-container .img-container .card img {
-          width: 100%;
-          height: 100%; }
-    .main-container .second-container .intentos {
-      border: 6px solid #38acd5;
-      border-radius: 10px;
-      background-color: white;
-      margin-left: 75px;
-      margin-right: 75px;
-      margin-bottom: 8px; }
-      .main-container .second-container .intentos .intento {
-        text-align: center;
-        font-weight: bold;
-        font-family: 'Times New Roman', Times, serif; }
+  background: rgba(255, 255, 255, 0.4);
+}
+.main-container .second-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.main-container .second-container .text-container {
+  text-align: center;
+}
+.main-container .second-container .text-container .title {
+  font-family: "Pacifico", cursive;
+  color: #38acd5;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 1;
+}
+.main-container .second-container .text-container p {
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1;
+}
+.main-container .second-container .text-container .p-top {
+  font-family: "NTR", sans-serif;
+  font-size: 30px;
+  margin: 0;
+}
+.main-container .second-container .img-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  width: 80%;
+}
+.main-container .second-container .img-container .card {
+  border-style: solid;
+  border-color: #ff9802;
+  width: 23%;
+  height: 200px;
+  margin: 5px;
+}
+.main-container .second-container .img-container .card img {
+  width: 100%;
+  height: 100%;
+}
+.main-container .second-container .intentos {
+  border: 6px solid #38acd5;
+  border-radius: 10px;
+  background-color: white;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 8px;
+}
+.main-container .second-container .intentos .intento {
+  text-align: center;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+}
+
+@media (max-width: 800px) {
+  .inicio {
+    margin: auto;
+    width: 80%;
+    height: 480px;
+  }
+  .inicio .input input {
+    width: 200px;
+  }
+  .inicio .botones button {
+    width: 200px;
+  }
+
+  .main-container .second-container .img-container {
+    width: 100%;
+  }
+  .main-container .second-container .img-container .card {
+    width: 26%;
+    height: 80px;
+    margin: 2px;
+  }
+}
 
 /*# sourceMappingURL=styles.css.map */

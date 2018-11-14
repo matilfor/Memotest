@@ -1,12 +1,17 @@
 body{
-    margin: auto;
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
     background-size: cover;
     background-image: url("../img/fondo.jpg");
 }
 
 .inicio{
     display: block;
-    width: 60%;
+    width: 30%;
     height: 420px;
     margin: auto;
     margin-top: 20px;
@@ -110,6 +115,7 @@ body{
             flex-direction: row;
             justify-content: center;
             margin: auto;
+            width: 80%;
             .card{
                 border-style: solid;
                 border-color: #ff9802;
@@ -126,13 +132,43 @@ body{
             border: 6px solid #38acd5;
             border-radius: 10px;
             background-color: white;
-            margin-left: 75px;
-            margin-right: 75px;
+            width: 80%;
+            margin: auto;
             margin-bottom: 8px;
             .intento{
                 text-align: center;
                 font-weight: bold;
                 font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    }
+}
+@media (max-width: 800px) {
+    .inicio{
+        margin: auto;
+        width: 80%;
+        height: 480px;
+        .input{
+            input{
+                width: 200px;
+            }
+        }
+        .botones{
+            button{
+                width: 200px;
+            }
+        } 
+    }
+
+    .main-container{
+        .second-container{
+            .img-container{
+                width: 100%;
+                .card{
+                    width: 26%;
+                    height: 80px;
+                    margin: 2px;
+                }
             }
         }
     }
