@@ -1,29 +1,27 @@
 const imagenes = [
-  'img/alce.jpg',
-  'img/epelante.jpg',
-  'img/nena.jpg',
-  'img/peces.jpg',
-  'img/unichancho.jpg',
-  'img/zapas.jpg',
+  {nombre: "img1", id: 'img/alce.jpg'},
+  {nombre: "img2", id: 'img/epelante.jpg'},
+  {nombre: "img3", id: 'img/nena.jpg'},
+  {nombre: "img4", id: 'img/peces.jpg'},
+  {nombre: "img5", id: 'img/unichancho.jpg'},
+  {nombre: "img6", id: 'img/zapas.jpg'},
+  {nombre: "img7", id: 'img/alce.jpg'},
+  {nombre: "img8", id: 'img/epelante.jpg'},
+  {nombre: "img9", id: 'img/nena.jpg'},
+  {nombre: "img10", id: 'img/peces.jpg'},
+  {nombre: "img11", id: 'img/unichancho.jpg'},
+  {nombre: "img12", id: 'img/zapas.jpg'},
 ]
 
-//imagenes.shuffle();
-imagenes.shuffle = function () {
-    var k, t, len;
-    len = this.length;
-    if (len < 2) {
-      return this;
-    }
-    while (len) {
-      k = Math.floor(Math.random() * len--);
-      t = this[k];
-      while (k < len) {
-        this[k] = this[++k];
-      }
-      this[k] = t;
-    }
-    return this;
-  };
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+shuffle(imagenes);
 
 var divsCard = $('.card');
 
