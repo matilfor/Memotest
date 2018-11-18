@@ -118,10 +118,26 @@ body{
                 margin: 0;
                 line-height: 1;
             }
-            .p-top{
-                font-family: 'NTR', sans-serif;
-                font-size: 30px; 
-                margin: 0;
+            .intentos-txt{
+                .num-intentos{
+                    font-family: 'Pacifico';
+                    color: #38acd5;
+                    font-size: 20px;
+                }
+            }
+            .nivel{
+                .niveles{
+                    font-family: 'NTR', sans-serif;
+                    font-size: 20px; 
+                    margin: 0;
+                }
+            }
+            .saludo{
+                .saludos{
+                    font-family: 'NTR', sans-serif;
+                    font-size: 30px; 
+                    margin: 0;
+                }
             }
         }
         .tablero{
