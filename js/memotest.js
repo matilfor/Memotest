@@ -2,19 +2,17 @@ $('.main-container').hide();
 
 let jugadores = []; //para guardar cada jugador en un array de objetos y que se vea en el ranking final
 
-
-function jugar(){
+function loginJugador(){
   let nombre = $('#name').val();
-  let nivel = $();//tomo el valor de cada botón? con su id? cómo?
-  let intentos = $();//de dónde saco este valor?
-  const jugador =  {
+  let nivel = $('.niveles').attr('text'); //sacar el texto dentro del p niveles?
+  let intentos = 0;
+  const jugador =  { //lo uso para el ranking. lo guardo acá o en otro lado? cómo lo guardo en el array jugadores?
     nombre: nombre,
     nivel: nivel,
     intentos: intentos
     }
-
   $("#facil").on("click", function() { 
-      nivel = 18
+      intentos = 18
       if (nombre){
         $('.main-container').show();
         $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
@@ -25,7 +23,7 @@ function jugar(){
       }
   });
   $("#intermedio").on("click", function() { 
-      nivel = 12
+      intentos = 12
       if (nombre){
         $('.main-container').show();
         $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
@@ -36,7 +34,7 @@ function jugar(){
       }
   });
  $("#experto").on("click", function() { 
-      nivel = 9
+      intentos = 9
       if (nombre){
         $('.main-container').show();
         $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
@@ -47,9 +45,9 @@ function jugar(){
       }
   });
 }
+
 //como vuelvo a ingresar un nombre luego de que me muestre mensaje de error?
 //no me toma bien el valor del input cuando ingreso más de una vez. tengo que actualizar para que vuelva a 0.
-//como evito tener que hacer un funcion para cada boton para mostrar el nivel y cantidad de intentos?
 
 const imagenes = [
   {id: "img1", src: 'img/alce.jpg'},
@@ -74,14 +72,12 @@ function shuffle(a) {
   return a;
 }
 
-shuffle(imagenes);
-
 function crearDivsDestapada(){
   for (let i = 0; i < imagenes.length; i++){
     let divCard = $('<div></div>').addClass('card');
-    let divCardTapada = $('<div></div>').addClass('card-tapada');
+    let divCardTapada = $('<div></div>').addClass('card-front');
     let imgDivCardTapada = $('<img/>').attr('src', 'img/tapada.jpg');
-    let divCardDestapada = $('<div></div>').addClass('card-destapada');
+    let divCardDestapada = $('<div></div>').addClass('card-back');
     let imgDivCardDestapada = $('<img/>').attr('src', imagenes[i].src);
     divCardDestapada.append(imgDivCardDestapada);
     divCardTapada.append(imgDivCardTapada);
@@ -90,8 +86,35 @@ function crearDivsDestapada(){
   }
 }
 
-let clicks = 0;
+//el click lo hago en el div contenedor de los dos divs front y back? o sea en el div card?
+function jugar(){
+  for (i=0; i < imagenes.length; i++){
+    let card1 = null;
+    let card2 = null;
+    let clicks = 0;
+    let totalClicks = 0;
+    $('.card').on('click', function(){
+      const imgsrc = $(this).children.attr('src');
+      const idcard = $(this).children.attr('id');
+      clicks = clicks + 1
+      if (clicks == 1) {
+      card1 = {src: imgsrc, id: idcard}
+      }else if (clicks == 2){
+      card2 = {src: imgsrc, id: idcard}
+      $('.intentos').prepend('<p class="intento"> Intentos: ' + totalClicks + '</p>'); //no funciona
+      if (card1.src == card2.src && card1.id == card2.id){
+      //algo
+      }else{
+        card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
+      }
+      clicks = 0; 
+      }
+    });
+  }
+}
 
-jugar();
+loginJugador();
+shuffle(imagenes);
 crearDivsDestapada();
+jugar();
 
