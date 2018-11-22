@@ -90,7 +90,6 @@ body {
 }
 
 .main-container {
-  display: block;
   width: 80%;
   margin: auto;
   margin-top: 20px;
@@ -98,11 +97,6 @@ body {
   border: 8px solid black;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.4);
-}
-.main-container .second-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
 }
 .main-container .second-container .text-container {
   text-align: center;
@@ -149,11 +143,13 @@ body {
   width: 23%;
   height: 200px;
   margin: 5px;
+  position: relative;
 }
 .main-container .second-container .tablero .card .card-front {
   width: 100%;
   height: 100%;
   margin: auto;
+  position: absolute;
 }
 .main-container .second-container .tablero .card .card-back {
   width: 100%;
@@ -164,6 +160,9 @@ body {
   width: 100%;
   height: 100%;
 }
+.main-container .second-container .tablero .card img .grayscale {
+  filter: grayscale(100%);
+}
 .main-container .second-container .intentos {
   border: 6px solid #38acd5;
   border-radius: 10px;
@@ -171,9 +170,9 @@ body {
   width: 80%;
   margin: auto;
   margin-bottom: 8px;
-}
-.main-container .second-container .intentos .intento {
   text-align: center;
+}
+.main-container .second-container .intentos .contador-intentos {
   font-weight: bold;
   font-family: "Times New Roman", Times, serif;
 }

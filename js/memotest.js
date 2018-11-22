@@ -1,53 +1,14 @@
-$('.main-container').hide();
-
-let jugadores = []; //para guardar cada jugador en un array de objetos y que se vea en el ranking final
-
-function loginJugador(){
-  let nombre = $('#name').val();
-  let nivel = $('.niveles').attr('text'); //sacar el texto dentro del p niveles?
-  let intentos = 0;
-  const jugador =  { //lo uso para el ranking. lo guardo acá o en otro lado? cómo lo guardo en el array jugadores?
-    nombre: nombre,
-    nivel: nivel,
-    intentos: intentos
-    }
-  $("#facil").on("click", function() { 
-      intentos = 18
-      if (nombre){
-        $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
-        $('.nivel').prepend('<p class="niveles"> FACIL </p>')
-        $('.num-intentos').text('18');
-      } else {
-        $('.error').show();
-      }
-  });
-  $("#intermedio").on("click", function() { 
-      intentos = 12
-      if (nombre){
-        $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
-        $('.nivel').prepend('<p class="niveles"> INTERMEDIO </p>')
-        $('.num-intentos').text('12');
-      } else {
-        $('.error').show();
-      }
-  });
- $("#experto").on("click", function() { 
-      intentos = 9
-      if (nombre){
-        $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
-        $('.nivel').prepend('<p class="niveles"> EXPERTO </p>')
-        $('.num-intentos').text('9');
-      } else {
-        $('.error').show();
-      }
-  });
+const jugadorData = {
+  nombre: '',
+  nivel: '',
+  intentos: 0,
 }
 
-//como vuelvo a ingresar un nombre luego de que me muestre mensaje de error?
-//no me toma bien el valor del input cuando ingreso más de una vez. tengo que actualizar para que vuelva a 0.
+const niveles = [
+  {nivel: 'FACIL', intentos: 18},
+  {nivel:'INTERMEDIO', intentos: 12},
+  {nivel: 'EXPERTO', intentos: 9}
+];
 
 const imagenes = [
   {id: "img1", src: 'img/alce.jpg'},
@@ -64,6 +25,61 @@ const imagenes = [
   {id: "img12", src: 'img/zapas.jpg'},
 ]
 
+function comienzo(){
+  $('.inicio').show();
+  $('.error').hide();
+  $('.main-container').hide();
+  //$('#ranking').hide(); este será el modal
+}
+
+function loginJugador(){
+  $("#facil").on("click", function() { 
+    let nombre = $('#name').val();
+    jugadorData.nombre = nombre;
+    jugadorData.nivel = niveles[0].nombre;
+      if (nombre){
+        $('.inicio').hide();
+        $('.main-container').show();
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.nivel').prepend('<p class="niveles"> FACIL </p>')
+        $('.num-intentos').text('18');
+      } else {
+        $('.error').show();
+        return;
+      }
+  });
+  $("#intermedio").on("click", function() { 
+    let nombre = $('#name').val();
+    jugadorData.nombre = nombre;
+    jugadorData.nivel = niveles[1].nombre;
+      if (nombre){
+        $('.inicio').hide();
+        $('.main-container').show();
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.nivel').prepend('<p class="niveles"> INTERMEDIO </p>')
+        $('.num-intentos').text('12');
+      } else {
+        $('.error').show();
+        return;
+      }
+  });
+  $("#experto").on("click", function() { 
+    let nombre = $('#name').val();
+    jugadorData.nombre = nombre;
+    jugadorData.nivel = niveles[2].nombre;
+      if (nombre){
+        $('.inicio').hide();
+        $('.main-container').show();
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.nivel').prepend('<p class="niveles"> EXPERTO </p>')
+        $('.num-intentos').text('9');
+      } else {
+        $('.error').show();
+        return;
+      }
+  });
+}
+
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -72,49 +88,53 @@ function shuffle(a) {
   return a;
 }
 
-function crearDivsDestapada(){
+function crearTablero(){
   for (let i = 0; i < imagenes.length; i++){
     let divCard = $('<div></div>').addClass('card');
-    let divCardTapada = $('<div></div>').addClass('card-front');
-    let imgDivCardTapada = $('<img/>').attr('src', 'img/tapada.jpg');
-    let divCardDestapada = $('<div></div>').addClass('card-back');
-    let imgDivCardDestapada = $('<img/>').attr('src', imagenes[i].src);
-    divCardDestapada.append(imgDivCardDestapada);
-    divCardTapada.append(imgDivCardTapada);
-    divCard.append(divCardTapada).append(divCardDestapada);
+    let divCardFront = $('<div></div>').addClass('card-front');
+    let imgDivCardFront = $('<img/>').attr('src', 'img/tapada.jpg');
+    let divCardBack = $('<div></div>').addClass('card-back');
+    let imgDivCardBack = $('<img/>').attr('src', imagenes[i].src);
+    divCardBack.append(imgDivCardBack);
+    divCardFront.append(imgDivCardFront);
+    divCard.append(divCardFront).append(divCardBack);
     $('.tablero').append(divCard);
   }
 }
 
-//el click lo hago en el div contenedor de los dos divs front y back? o sea en el div card?
-function jugar(){
-  for (i=0; i < imagenes.length; i++){
+function jugar(niveles){
     let card1 = null;
     let card2 = null;
     let clicks = 0;
-    let totalClicks = 0;
+    //let totalClicks = []; es necesario usar arrays o puedo con dos variables?
+    let numIntentos = niveles.intentos;
     $('.card').on('click', function(){
       const imgsrc = $(this).children.attr('src');
       const idcard = $(this).children.attr('id');
-      clicks = clicks + 1
+      clicks ++;
       if (clicks == 1) {
       card1 = {src: imgsrc, id: idcard}
       }else if (clicks == 2){
       card2 = {src: imgsrc, id: idcard}
-      $('.intentos').prepend('<p class="intento"> Intentos: ' + totalClicks + '</p>'); //no funciona
+      numIntentos -- //como hago para muestre intentos de manera incremental
+      $('.contador-intentos').text(numIntentos);
       if (card1.src == card2.src && card1.id == card2.id){
-      //algo
+      card1.addClass('grayscale');
+      card2.addClass('grayscale');
       }else{
         card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
+        setTimeout(function(){ 
+          clicks = 0; 
+        },500)
       }
-      clicks = 0; 
       }
     });
   }
-}
 
+
+comienzo();
 loginJugador();
 shuffle(imagenes);
-crearDivsDestapada();
+crearTablero();
 jugar();
 
