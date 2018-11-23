@@ -8,18 +8,18 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css?family=NTR" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet"> 
 </head>
 <body>
     <div class="inicio">
         <div class="text-inicio">
             <p class=title>Memotest</p>
-            <p>Hola! Vamos a jugar al Memotest</p>
+            <p>Hola! 👋🏻 Vamos a jugar al Memotest</p>
             <p>Pero antes de empezar...</p>
-            <p>Cual es tu nombre?</p>
+            <p>Cual es tu nombre❓</p>
         </div>
         <div class="inputNombre">
-            <input type="text" id='name' placeholder="Ingresa tu nombre">
+            <input type="text" id='name' onfocus="this.value=''">
         </div>
         <div class="question">
             <p>Con que dificultad te gustaria jugar?</p>
@@ -29,9 +29,7 @@
             <button id=intermedio>INTERMEDIO</button>
             <button id=experto>EXPERTO</button>
         </div>
-        <div class="error">
-            <p class="errormsg">UPSS...El nombre es requerido</p>
-        </div>
+        <div class="error">UPSS...El nombre es requerido</div>
     </div>
     <div class="main-container">
         <div class="second-container">
@@ -45,6 +43,29 @@
             <div class="tablero"></div>
             <div class="intentos">Intentos: <span class="contador-intentos"></span></div>
         </div>
+    </div>
+    <div class="modal-container"></div>
+    <div id='ranking-modal'>
+        <div class="ganaste">GANASTE 🎉! con <span class="cant-intentos"></span> intentos.<br>
+        Ya podés volver a jugar.</div>
+        <div class="volver-jugar">VOLVER A JUGAR</div>
+        <table class='tabla-jugadores'>
+            <tr>
+                <th>NOMBRE</th>
+                <th>NIVEL</th>
+                <th>INTENTOS</th>
+            </tr>
+            <tr>
+                <td class='ranking-nombre'>Natalia</td>
+                <td class='ranking-nivel'>FACIL</td>
+                <td class='ranking-intentos'>12</td>
+            </tr>
+            <tr>
+                <td class='ranking-nombre'>Nati</td>
+                <td class='ranking-nivel'>FACIL</td>
+                <td class='ranking-intentos'>14</td>
+            </tr>
+        </table>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/memotest.js"></script>

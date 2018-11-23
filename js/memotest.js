@@ -102,39 +102,58 @@ function crearTablero(){
   }
 }
 
-function jugar(niveles){
-    let card1 = null;
-    let card2 = null;
-    let clicks = 0;
-    //let totalClicks = []; es necesario usar arrays o puedo con dos variables?
-    let numIntentos = niveles.intentos;
-    $('.card').on('click', function(){
-      const imgsrc = $(this).children.attr('src');
-      const idcard = $(this).children.attr('id');
-      clicks ++;
-      if (clicks == 1) {
-      card1 = {src: imgsrc, id: idcard}
-      }else if (clicks == 2){
-      card2 = {src: imgsrc, id: idcard}
-      numIntentos -- //como hago para muestre intentos de manera incremental
-      $('.contador-intentos').text(numIntentos);
-      if (card1.src == card2.src && card1.id == card2.id){
-      card1.addClass('grayscale');
-      card2.addClass('grayscale');
-      }else{
-        card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
-        setTimeout(function(){ 
-          clicks = 0; 
-        },500)
-      }
-      }
-    });
-  }
+function flip(){
+  console.log('entró al flip');
+  $('.card').on('click', function () {
+    $(this).find('.card-front', 'card-back').toggleClass('flipped'); //agrega la clase pero no hace el efecto
+    return false;
+  });
+}
 
+function jugar(niveles){
+  console.log('entró a jugar');
+  let card1 = null;
+  let card2 = null;
+  let clicks = 0;
+  //guardo los clicks en un array o puedo con dos variables?
+  let numIntentos = niveles.intentos; //NaN error
+  $('.card').on('click', function(){
+    const imgsrc = $(this).children().attr('src'); 
+    const idcard = $(this).children().attr('id');
+    clicks ++;
+    if (clicks == 1) {
+      card1 = {src: imgsrc, id: idcard}
+    }else if (clicks == 2){
+      card2 = {src: imgsrc, id: idcard}
+      numIntentos -- 
+      $('.contador-intentos').text(numIntentos);
+    if (card1.src == card2.src && card1.id == card2.id){
+      card1.addClass('grayscale'); //error addclass is not a function
+      card2.addClass('grayscale');
+    }else{
+      card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
+      setTimeout(function(){ //no sé si poner clicks=0 acá
+        clicks = 0; 
+      },500)
+    }
+    //codigo para determinar si ganó o no
+    mostrarModal();
+    }
+  });
+}
+
+function mostrarModal(){
+  $('.volver-jugar').on('click', function(){
+    $('.modal-container').toggleClass('mostrar-modal');
+    $('.card').remove();
+    comienzo();
+});
+}
 
 comienzo();
 loginJugador();
 shuffle(imagenes);
 crearTablero();
-jugar();
+flip();
+jugar(niveles);
 
