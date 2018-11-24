@@ -1,28 +1,27 @@
-const jugadorData = {
+const jugadorData = { //para mostrar esta info en el ranking?
   nombre: '',
   nivel: '',
   intentos: 0,
 }
 
-const niveles = [
-  {nivel: 'FACIL', intentos: 18},
-  {nivel:'INTERMEDIO', intentos: 12},
-  {nivel: 'EXPERTO', intentos: 9}
-];
+const niveles = 
+  {facil: 18,
+  intermedio: 12,
+  experto: 9};
 
 const imagenes = [
-  {id: "img1", src: 'img/alce.jpg'},
-  {id: "img2", src: 'img/epelante.jpg'},
-  {id: "img3", src: 'img/nena.jpg'},
-  {id: "img4", src: 'img/peces.jpg'},
-  {id: "img5", src: 'img/unichancho.jpg'},
-  {id: "img6", src: 'img/zapas.jpg'},
-  {id: "img7", src: 'img/alce.jpg'},
-  {id: "img8", src: 'img/epelante.jpg'},
-  {id: "img9", src: 'img/nena.jpg'},
-  {id: "img10", src: 'img/peces.jpg'},
-  {id: "img11", src: 'img/unichancho.jpg'},
-  {id: "img12", src: 'img/zapas.jpg'},
+  {id: '1', src: 'img/alce.jpg'},
+  {id: '2', src: 'img/epelante.jpg'},
+  {id: '3', src: 'img/nena.jpg'},
+  {id: '4', src: 'img/peces.jpg'},
+  {id: '5', src: 'img/unichancho.jpg'},
+  {id: '6', src: 'img/zapas.jpg'},
+  {id: '7', src: 'img/alce.jpg'},
+  {id: '8', src: 'img/epelante.jpg'},
+  {id: '9', src: 'img/nena.jpg'},
+  {id: '10', src: 'img/peces.jpg'},
+  {id: '11', src: 'img/unichancho.jpg'},
+  {id: '12', src: 'img/zapas.jpg'},
 ]
 
 function comienzo(){
@@ -36,7 +35,7 @@ function loginJugador(){
   $("#facil").on("click", function() { 
     let nombre = $('#name').val();
     jugadorData.nombre = nombre;
-    jugadorData.nivel = niveles[0].nombre;
+    jugadorData.nivel = 'facil';
       if (nombre){
         $('.inicio').hide();
         $('.main-container').show();
@@ -51,7 +50,7 @@ function loginJugador(){
   $("#intermedio").on("click", function() { 
     let nombre = $('#name').val();
     jugadorData.nombre = nombre;
-    jugadorData.nivel = niveles[1].nombre;
+    jugadorData.nivel = 'intermedio';
       if (nombre){
         $('.inicio').hide();
         $('.main-container').show();
@@ -66,7 +65,7 @@ function loginJugador(){
   $("#experto").on("click", function() { 
     let nombre = $('#name').val();
     jugadorData.nombre = nombre;
-    jugadorData.nivel = niveles[2].nombre;
+    jugadorData.nivel = 'experto';
       if (nombre){
         $('.inicio').hide();
         $('.main-container').show();
@@ -92,22 +91,14 @@ function crearTablero(){
   for (let i = 0; i < imagenes.length; i++){
     let divCard = $('<div></div>').addClass('card');
     let divCardFront = $('<div></div>').addClass('card-front');
-    let imgDivCardFront = $('<img/>').attr('src', 'img/tapada.jpg');
+    let imgSrcCardFront = $('<img/>').attr('src', 'img/tapada.jpg');
     let divCardBack = $('<div></div>').addClass('card-back');
-    let imgDivCardBack = $('<img/>').attr('src', imagenes[i].src);
-    divCardBack.append(imgDivCardBack);
-    divCardFront.append(imgDivCardFront);
+    let imgSrcCardBack = $('<img/>').attr('src', imagenes[i].src);
+    divCardFront.append(imgSrcCardFront);
+    divCardBack.append('<img id="' + imagenes[i].id + '" src="' + imagenes[i].src + '" />');
     divCard.append(divCardFront).append(divCardBack);
     $('.tablero').append(divCard);
   }
-}
-
-function flip(){
-  console.log('entró al flip');
-  $('.card').on('click', function () {
-    $(this).find('.card-front', 'card-back').toggleClass('flipped'); //agrega la clase pero no hace el efecto
-    return false;
-  });
 }
 
 function jugar(niveles){
@@ -115,11 +106,19 @@ function jugar(niveles){
   let card1 = null;
   let card2 = null;
   let clicks = 0;
-  //guardo los clicks en un array o puedo con dos variables?
-  let numIntentos = niveles.intentos; //NaN error
   $('.card').on('click', function(){
-    const imgsrc = $(this).children().attr('src'); 
-    const idcard = $(this).children().attr('id');
+    let numIntentos = niveles[jugadorData.nivel];
+    const imgsrc = $(this).children('.card-back').children().attr('src'); 
+    const idcard = $(this).children('.card-back').children().attr('id');
+    if($(this).children().eq(0).hasClass('card-front')){
+      $(this).children().eq(0).removeClass('card-front')
+      $(this).children().eq(0).addClass('hidden')
+
+    }else{
+      $(this).children().eq(0).addClass('card-back')
+      $(this).children().eq(0).removeClass('card-front')
+      $(this).children().eq(0).addClass('hidden')
+    }
     clicks ++;
     if (clicks == 1) {
       card1 = {src: imgsrc, id: idcard}
@@ -127,24 +126,31 @@ function jugar(niveles){
       card2 = {src: imgsrc, id: idcard}
       numIntentos -- 
       $('.contador-intentos').text(numIntentos);
-    if (card1.src == card2.src && card1.id == card2.id){
-      card1.addClass('grayscale'); //error addclass is not a function
-      card2.addClass('grayscale');
-    }else{
-      card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
-      setTimeout(function(){ //no sé si poner clicks=0 acá
-        clicks = 0; 
-      },500)
-    }
-    //codigo para determinar si ganó o no
-    mostrarModal();
+      console.log(card1, card2)
+      if (card1.src == card2.src && card1.id != card2.id){
+        console.log('Entro')
+        //match = 1 - crear variable para contar los matchs
+        //como hago para que se de vuelta luego de clickearla
+        $('#' + card1.id).addClass('grayscale'); 
+        $('#' + card2.id).addClass('grayscale');
+      }else{
+        card1, card2 = $(idcard).attr('src', 'images/tapada.jpg');
+        setTimeout(function(){ 
+          clicks = 0; 
+        },500)
+      }
     }
   });
+  return;
 }
 
-function mostrarModal(){
+//codigo para determinar si ganó o no. con otro if?
+    //mostrarModal();
+
+function mostrarModal(){ //como muestro el modal
+  $('modal-container').hide();
   $('.volver-jugar').on('click', function(){
-    $('.modal-container').toggleClass('mostrar-modal');
+    $('.modal-container').show();
     $('.card').remove();
     comienzo();
 });
@@ -154,6 +160,6 @@ comienzo();
 loginJugador();
 shuffle(imagenes);
 crearTablero();
-flip();
 jugar(niveles);
 
+//location.reload() para reiniciar el juego en los botones de los modal
