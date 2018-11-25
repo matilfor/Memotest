@@ -159,13 +159,13 @@ body {
   -moz-box-shadow: -5px 5px 5px 0px rgba(150, 150, 150, 0.59);
   box-shadow: -5px 5px 5px 0px rgba(150, 150, 150, 0.59);
 }
-.main-container .second-container .tablero .card .card-front {
+.main-container .second-container .tablero .card .cartaTapada {
   width: 100%;
   height: 100%;
   margin: auto;
   position: absolute;
 }
-.main-container .second-container .tablero .card .card-back {
+.main-container .second-container .tablero .card .cartaDestapada {
   width: 100%;
   height: 100%;
   margin: auto;
@@ -194,8 +194,9 @@ body {
   filter: grayscale(100%);
 }
 
-.hidden {
-  display: none;
+.visible {
+  opacity: 1;
+  transition: 0.5s;
 }
 
 @media (max-width: 800px) {
