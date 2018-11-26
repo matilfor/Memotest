@@ -136,6 +136,7 @@ function jugar(){
       console.log(dosCartas);
       if (dosCartas.length === 2) {
           intentos++ ;
+          //intentos = jugadorInfo.intentos tengo que guardar el numero de intentos usados en el objeto jugadorInfo
           if (dosCartas[0].children('img').attr('src') === dosCartas[1].children('img').attr('src')
           && dosCartas[0].attr('id') !== dosCartas[1].attr('id')) {
               console.log('entro')
@@ -154,7 +155,7 @@ function jugar(){
             },800)
           }   
       }
-      ganaPierde(); 
+      ganaPierde(); //entra pero no se ejecuta
   } 
   $('.contador-intentos').text('Intentos: ' + intentos);
   }) 
@@ -164,16 +165,16 @@ function jugar(){
 function ganaPierde(){
   console.log('entro a gana o pierde'); 
   if (aciertos === 6) {
+    jugadorInfo.intentos = jugadorIntentos;
     $('.p-mensaje').html(`Ganaste 🎉 ! con ${jugadorIntentos} intentos.`);
     $('#gameOver').show();
-    jugadorInfo.intentos = jugadorIntentos;
-    jugador.push(jugadorInfo);
-    //storeUser(); para guardar en el local storage
+    jugador.push(jugadorInfo); //no funciona
+    //storeJugador(); para guardar en el local storage
   }
-  if (clicks === (niveles.intentos * 2) && aciertos < 6){
+  if (clicks === (niveles[jugadorInfo.nivel].intentos * 2) && aciertos < 6){
     $('.p-mensaje').html('Perdiste! 😢');
     $('#game-over').show();
-    //storeUser();
+    //storeJugador();
   }
   jugarDeNuevo();
 } 
@@ -188,11 +189,11 @@ function jugarDeNuevo(){
   })
 }
 
-//function storeUser (){
+//function storeJugador (){
   //var usersJSON = JSON.stringify(users);
-  //localStorage.setItem('users', usersJSON);
-  //usersJSON = localStorage.getItem('users');
-  //users = JSON.parse(usersJSON);
+  //localStorage.setItem('jugador', jugadorJSON);
+  //jugadorJSON = localStorage.getItem('jugador');
+  //jugador = JSON.parse(jugadorJSON);
 //}
 
 comienzo();
