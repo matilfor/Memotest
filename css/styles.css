@@ -106,38 +106,38 @@ body {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.4);
 }
-.main-container .second-container .text-container {
+.main-container .text-container {
   text-align: center;
 }
-.main-container .second-container .text-container .title {
-  font-family: "Pacifico", cursive;
+.main-container .text-container .title {
   color: #38acd5;
+  font-family: "Pacifico", cursive;
   font-weight: bold;
   font-size: 40px;
   line-height: 1;
 }
-.main-container .second-container .text-container p {
+.main-container .text-container p {
   font-family: "Pangolin", cursive;
   font-size: 20px;
   margin: 0;
   line-height: 1;
 }
-.main-container .second-container .text-container .intentos-txt .num-intentos {
+.main-container .text-container .intentos-txt .num-intentos {
   font-family: "Pacifico";
   color: #38acd5;
   font-size: 20px;
 }
-.main-container .second-container .text-container .nivel .niveles {
+.main-container .text-container .nivel .niveles {
   font-family: "Pangolin", cursive;
   font-size: 20px;
   margin: 0;
 }
-.main-container .second-container .text-container .saludo .saludos {
+.main-container .text-container .saludo .saludos {
   font-family: "Pangolin", cursive;
   font-size: 30px;
   margin: 0;
 }
-.main-container .second-container .tablero {
+.main-container .tablero {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -145,7 +145,7 @@ body {
   margin: auto;
   width: 80%;
 }
-.main-container .second-container .tablero .card {
+.main-container .tablero .card {
   border-style: solid;
   border-color: #ff9802;
   width: 23%;
@@ -153,28 +153,28 @@ body {
   margin: 5px;
   position: relative;
 }
-.main-container .second-container .tablero .card:hover {
+.main-container .tablero .card:hover {
   cursor: pointer;
   -webkit-box-shadow: -5px 5px 5px 0px rgba(150, 150, 150, 0.59);
   -moz-box-shadow: -5px 5px 5px 0px rgba(150, 150, 150, 0.59);
   box-shadow: -5px 5px 5px 0px rgba(150, 150, 150, 0.59);
 }
-.main-container .second-container .tablero .card .cartaTapada {
+.main-container .tablero .card .cartaTapada {
   width: 100%;
   height: 100%;
   margin: auto;
   position: absolute;
 }
-.main-container .second-container .tablero .card .cartaDestapada {
+.main-container .tablero .card .cartaDestapada {
   width: 100%;
   height: 100%;
   margin: auto;
 }
-.main-container .second-container .tablero .card img {
+.main-container .tablero .card img {
   width: 100%;
   height: 100%;
 }
-.main-container .second-container .intentos {
+.main-container .intentos {
   border: 6px solid #38acd5;
   border-radius: 10px;
   background-color: white;
@@ -183,8 +183,9 @@ body {
   margin-bottom: 8px;
   text-align: center;
 }
-.main-container .second-container .intentos .contador-intentos {
+.main-container .intentos .contador-intentos {
   font-weight: bold;
+  color: black;
   font-family: "Times New Roman", Times, serif;
 }
 

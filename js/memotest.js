@@ -2,6 +2,7 @@ let intentos = 0;
 let clicks = 0;
 let aciertos = 0;
 let dosCartas = [];
+let nivel = '';
 
 const jugador = [];
 const jugadorInfo = {
@@ -10,12 +11,17 @@ const jugadorInfo = {
     intentos: 0
 }
 
-const niveles = [
-  {nombre: 'FÁCIL', intentos: 18},
-  {nombre:'INTERMEDIO', intentos: 14},
-  {nombre: 'EXPERTO', intentos: 12}
-];
-
+const niveles = {
+  'FACIL': {
+    'intentos': 18
+  },
+  'INTERMEDIO': {
+    'intentos': 14
+  },
+  'EXPERTO': {
+    'intentos': 12
+  }
+}
 const imagenes = [
   {id: '1', src: 'img/alce.jpg'},
   {id: '2', src: 'img/epelante.jpg'},
@@ -47,12 +53,12 @@ function comienzo(){
 
 function loginJugador(){
   $("#facil").on("click", function() { 
-    nombre = $('#name').val();
-    nivel = 'facil';
-      if (nombre){
+    jugadorInfo.nombre = $('#name').val();
+    jugadorInfo.nivel = 'FACIL';
+      if (jugadorInfo.nombre){
         $('.inicio').hide();
         $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + jugadorInfo.nombre +'!</p>')
         $('.nivel').prepend('<p class="niveles"> FACIL </p>')
         $('.num-intentos').text('18');
       } else {
@@ -61,12 +67,12 @@ function loginJugador(){
       }
   });
   $("#intermedio").on("click", function() { 
-    nombre = $('#name').val();
-    nivel = 'intermedio';
-      if (nombre){
+    jugadorInfo.nombre = $('#name').val();
+    jugadorInfo.nivel = 'intermedio';
+      if (jugadorInfo.nombre){
         $('.inicio').hide();
         $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + jugadorInfo.nombre +'!</p>')
         $('.nivel').prepend('<p class="niveles"> INTERMEDIO </p>')
         $('.num-intentos').text('12');
       } else {
@@ -75,12 +81,12 @@ function loginJugador(){
       }
   });
   $("#experto").on("click", function() { 
-    nombre = $('#name').val();
-    nivel = 'experto';
-      if (nombre){
+    jugadorInfo.nombre = $('#name').val();
+    jugadorInfo.nivel = 'experto';
+      if (jugadorInfo.nombre){
         $('.inicio').hide();
         $('.main-container').show();
-        $('.saludo').prepend('<p class="saludos">¡Hola ' + nombre +'!</p>')
+        $('.saludo').prepend('<p class="saludos">¡Hola ' + jugadorInfo.nombre +'!</p>')
         $('.nivel').prepend('<p class="niveles"> EXPERTO </p>')
         $('.num-intentos').text('9');
       } else {
@@ -110,7 +116,7 @@ function crearTablero(){
     cartaTapadaDiv.append(cartaTapadaImg);
     cartaDestapadaDiv.append(cartaDestapadaImg);
     $('.tablero').append(carta);
-    cartaDestapadaDiv.data('name', imagenes[i].id);
+    cartaDestapadaDiv.attr('id', imagenes[i].id);
   }
 }
 
@@ -120,17 +126,17 @@ function jugar(){
   clicks = 0;
   aciertos = 0;
   dosCartas = [];
-  $('.cartaDestapada').on('click', function(){
-    console.log('entro al onclick');
-    if (clicks <= (niveles.intentos * 2)){
+  $('.cartaTapada').on('click', function(){
+    if (clicks <= (niveles[jugadorInfo.nivel].intentos * 2)){
+      console.log('entro al if');
       clicks++;
-      $(this).addClass('visible')
+      $(this).parent().addClass('visible');
       //$(this).parent().addClass('flip');
-      dosCartas.push($(this));
+      dosCartas.push($(this).next());
       if (dosCartas.length === 2) {
           intentos++ ;
-          if (dosCartas[0].data('src') === dosCartas[1].data('src') 
-              && dosCartas[0].data('id') !== dosCartas[1].data('id')) {
+          if (dosCartas[0].children('img').attr('src') === dosCartas[1].children('img').attr('src')
+          && dosCartas[0].attr('id') !== dosCartas[1].attr('id')) {
               dosCartas[0].addClass('gris');
               dosCartas[1].addClass('gris');
               aciertos++;
@@ -138,8 +144,8 @@ function jugar(){
           }
           else {
             setTimeout(function(){ 
-              dosCartas[0].removeClass('visible')
-              dosCartas[1].removeClass('visible')
+              dosCartas[0].parent().removeClass('visible')
+              dosCartas[1].parent().removeClass('visible')
               //dosCartas[0].parent().removeClass('flip')
               //dosCartas[1].parent().removeClass('flip')
               dosCartas = [];
@@ -147,7 +153,7 @@ function jugar(){
           }   
       }
   }
-  $('.contador-intentos').text(intentos);
+  $('.contador-intentos').text('Intentos: ' + intentos);
   })
   ganaPierde();
 };
