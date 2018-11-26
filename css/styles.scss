@@ -162,6 +162,11 @@ body{
                 -moz-box-shadow: -5px 5px 5px 0px rgba(150,150,150,0.59);
                 box-shadow: -5px 5px 5px 0px rgba(150,150,150,0.59);
             }
+            &.visible{
+                .cartaTapada{
+                    display: none;
+                } 
+            } 
             .cartaTapada{
                 width: 100%;
                 height: 100%;
@@ -198,10 +203,6 @@ body{
 .gris{
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
-}
-.visible{
-    opacity: 1;
-    transition: 0.5s; 
 }
 
 @media (max-width: 800px) {

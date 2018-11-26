@@ -132,11 +132,13 @@ function jugar(){
       clicks++;
       $(this).parent().addClass('visible');
       //$(this).parent().addClass('flip');
-      dosCartas.push($(this).next());
+      dosCartas.push($(this).next()); 
+      console.log(dosCartas);
       if (dosCartas.length === 2) {
           intentos++ ;
           if (dosCartas[0].children('img').attr('src') === dosCartas[1].children('img').attr('src')
           && dosCartas[0].attr('id') !== dosCartas[1].attr('id')) {
+              console.log('entro')
               dosCartas[0].addClass('gris');
               dosCartas[1].addClass('gris');
               aciertos++;
@@ -152,14 +154,15 @@ function jugar(){
             },800)
           }   
       }
-  }
+      ganaPierde(); 
+  } 
   $('.contador-intentos').text('Intentos: ' + intentos);
-  })
-  ganaPierde();
+  }) 
+  console.log('llego')
 };
 
 function ganaPierde(){
-  console.log('entro a gana o pierde');
+  console.log('entro a gana o pierde'); 
   if (aciertos === 6) {
     $('.p-mensaje').html(`Ganaste 🎉 ! con ${jugadorIntentos} intentos.`);
     $('#gameOver').show();
@@ -173,7 +176,7 @@ function ganaPierde(){
     //storeUser();
   }
   jugarDeNuevo();
-}
+} 
 
 function jugarDeNuevo(){
   $('#volver-jugar').on('click', function () {
