@@ -1,4 +1,3 @@
-let intentos = 0;
 let clicks = 0;
 let aciertos = 0;
 let dosCartas = [];
@@ -121,22 +120,14 @@ function crearTablero(){
 }
 
 function jugar(){
-  console.log('entro a jugar');
-  intentos = 0;
-  clicks = 0;
-  aciertos = 0;
-  dosCartas = [];
   $('.cartaTapada').on('click', function(){
     if (clicks <= (niveles[jugadorInfo.nivel].intentos * 2)){
-      console.log('entro al if');
       clicks++;
       $(this).parent().addClass('visible');
-      //$(this).parent().addClass('flip');
       dosCartas.push($(this).next()); 
       console.log(dosCartas);
       if (dosCartas.length === 2) {
-          intentos++ ;
-          //intentos = jugadorInfo.intentos tengo que guardar el numero de intentos usados en el objeto jugadorInfo
+          jugadorInfo.intentos = jugadorInfo.intentos + 1;
           if (dosCartas[0].children('img').attr('src') === dosCartas[1].children('img').attr('src')
           && dosCartas[0].attr('id') !== dosCartas[1].attr('id')) {
               console.log('entro')
@@ -149,30 +140,25 @@ function jugar(){
             setTimeout(function(){ 
               dosCartas[0].parent().removeClass('visible')
               dosCartas[1].parent().removeClass('visible')
-              //dosCartas[0].parent().removeClass('flip')
-              //dosCartas[1].parent().removeClass('flip')
               dosCartas = [];
             },800)
           }   
       }
-      ganaPierde(); //entra pero no se ejecuta
+      ganaPierde(); //entra todo ok pero me falta hacer que muestre los cartelitos
   } 
-  $('.contador-intentos').text('Intentos: ' + intentos);
+  $('.contador-intentos').text('Intentos: ' + jugadorInfo.intentos);
   }) 
-  console.log('llego')
 };
 
 function ganaPierde(){
-  console.log('entro a gana o pierde'); 
   if (aciertos === 6) {
-    jugadorInfo.intentos = jugadorIntentos;
-    $('.p-mensaje').html(`Ganaste 🎉 ! con ${jugadorIntentos} intentos.`);
-    $('#gameOver').show();
-    jugador.push(jugadorInfo); //no funciona
-    //storeJugador(); para guardar en el local storage
+    $('.p-mensaje').html(`Ganaste 🎉 ! con ${jugadorInfo.intentos} intentos.`);
+    $('#gameOver').show(); //me falta hacer que muestre esto
+    jugador.push(jugadorInfo);
+    //storeJugador(); para guardar en el local storage (me falta)
   }
   if (clicks === (niveles[jugadorInfo.nivel].intentos * 2) && aciertos < 6){
-    $('.p-mensaje').html('Perdiste! 😢');
+    $('.p-mensaje').html('Perdiste! 😢'); //me falta hacer que muestre esto
     $('#game-over').show();
     //storeJugador();
   }
@@ -188,7 +174,7 @@ function jugarDeNuevo(){
     $('.card').remove();
   })
 }
-
+//me falta:
 //function storeJugador (){
   //var usersJSON = JSON.stringify(users);
   //localStorage.setItem('jugador', jugadorJSON);
@@ -201,5 +187,3 @@ loginJugador();
 shuffle(imagenes);
 crearTablero();
 jugar();
-
-//location.reload() para reiniciar el juego en los botones de los modal
