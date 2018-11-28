@@ -44,26 +44,25 @@
             <div class="intentos"><p class="contador-intentos">Intentos: </p></div>
         </div>
     </div>
-    <div id="game-over">
-        <div class="mensaje">
-          <p class="p-mensaje"></p>
-          <p>Ya podes volver a jugar</p>
-          <button id="volver-jugar">VOLVER A JUGAR</button>
-            <div id="ranking">
-              <div class="fila">
-                  <div id="rankingNombre">
-                      <p>NOMBRE</p>
-                    </div>  
-                    <div id="rankingNivel">
-                      <p>NIVEL</p>
-                    </div>
-                    <div id="rankingIntentos">
-                      <p>INTENTOS</p>
-                    </div>
-              </div>
+    <div id="modal" class="oculto">
+        <div id="gana" class="oculto">
+            <div class="gana-msg">
+                <p>Ganaste<i class="em em-tada"></i>! con <span class="intentos-span"></span> intentos</p>
+            </div>
+            <div class="botones">
+                <button class="volver-jugar">VOLVER A JUGAR</button>
+            </div>
+            <div class="ranking"></div>
+        </div> 
+        <div id="pierde" class="oculto">
+            <div class="pierde-msg">
+                <p>Perdiste! 😢</p>
+            </div>
+            <div class="botones">
+                <button class="volver-jugar">VOLVER A JUGAR</button>
             </div>
         </div> 
-      </div>      
+    </div>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/memotest.js"></script>
 </body>

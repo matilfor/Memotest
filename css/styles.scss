@@ -200,6 +200,106 @@ body{
     }
 }
 
+#modal{    
+    background-color: #f9e9dfcc;;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    #gana{
+        width: 50%;
+        background-color: white;
+        color: black;
+        z-index: 1;
+        top: 10%;
+        height: auto;
+        left: 25%;
+        right: 50%;
+        position: absolute;
+        padding: 50px;
+        flex-direction: column;
+        font-size: 20px;
+        align-items: center;
+        border: 7px solid black;
+        border-radius: 5px;
+        text-align: center;
+        .botones {
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            .volver-jugar {
+                background-color: #f39d2d;
+                border: none;
+                color: white;
+                width: 100%;
+                padding: 5px;
+                border-radius: 5px;
+                font-family: "Sniglet", cursive;
+            }
+        }
+        .ranking{
+            width: 98%;
+            height: auto;    
+            text-align: center;
+            table{
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 13px;            
+                    th{
+                        text-align: center;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        background-color: #f9e9dfcc;
+                        color: white;
+                    }tr:nth-child(even){
+                        background-color: #f2f2f2
+                    }td{
+                        text-align: center;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                    }
+            }
+        } 
+    }  
+    #pierde{
+        width: 50%;
+        background-color: white;
+        color: black;
+        z-index: 1;
+        top: 10%;
+        height: auto;
+        left: 25%;
+        right: 50%;
+        position: absolute;
+        padding: 50px;
+        flex-direction: column;
+        font-size: 20px;
+        align-items: center;
+        border: 7px solid black;
+        border-radius: 5px;
+        text-align: center;    
+        .botones{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            .volver-jugar{ 
+                background-color: #f39d2d;
+                border: none;
+                color: white;
+                width: 100%;
+                padding: 5px;
+                border-radius: 5px;
+                font-family: "Sniglet", cursive;
+            }
+        }
+    }
+}
+
+.oculto{
+    display: none;
+}
+
 .gris{
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);

@@ -15,10 +15,10 @@ const niveles = {
     'intentos': 18
   },
   'INTERMEDIO': {
-    'intentos': 14
+    'intentos': 12
   },
   'EXPERTO': {
-    'intentos': 12
+    'intentos': 9
   }
 }
 const imagenes = [
@@ -45,9 +45,7 @@ function comienzo(){
   $('.inicio').show();
   $('.error').hide();
   $('.main-container').hide();
-  $('#game-over').hide();
   $('.images').removeClass('gris');
-  //$('#ranking').hide();
 }
 
 function loginJugador(){
@@ -67,7 +65,7 @@ function loginJugador(){
   });
   $("#intermedio").on("click", function() { 
     jugadorInfo.nombre = $('#name').val();
-    jugadorInfo.nivel = 'intermedio';
+    jugadorInfo.nivel = 'INTERMEDIO';
       if (jugadorInfo.nombre){
         $('.inicio').hide();
         $('.main-container').show();
@@ -81,7 +79,7 @@ function loginJugador(){
   });
   $("#experto").on("click", function() { 
     jugadorInfo.nombre = $('#name').val();
-    jugadorInfo.nivel = 'experto';
+    jugadorInfo.nivel = 'EXPERTO';
       if (jugadorInfo.nombre){
         $('.inicio').hide();
         $('.main-container').show();
@@ -125,12 +123,10 @@ function jugar(){
       clicks++;
       $(this).parent().addClass('visible');
       dosCartas.push($(this).next()); 
-      console.log(dosCartas);
       if (dosCartas.length === 2) {
           jugadorInfo.intentos = jugadorInfo.intentos + 1;
           if (dosCartas[0].children('img').attr('src') === dosCartas[1].children('img').attr('src')
           && dosCartas[0].attr('id') !== dosCartas[1].attr('id')) {
-              console.log('entro')
               dosCartas[0].addClass('gris');
               dosCartas[1].addClass('gris');
               aciertos++;
@@ -144,7 +140,7 @@ function jugar(){
             },800)
           }   
       }
-      ganaPierde(); //entra todo ok pero me falta hacer que muestre los cartelitos
+      ganaPierde();
   } 
   $('.contador-intentos').text('Intentos: ' + jugadorInfo.intentos);
   }) 
@@ -152,38 +148,71 @@ function jugar(){
 
 function ganaPierde(){
   if (aciertos === 6) {
-    $('.p-mensaje').html(`Ganaste 🎉 ! con ${jugadorInfo.intentos} intentos.`);
-    $('#gameOver').show(); //me falta hacer que muestre esto
-    jugador.push(jugadorInfo);
-    //storeJugador(); para guardar en el local storage (me falta)
+    $('#modal').removeClass('oculto');
+    $('#gana').removeClass('oculto');
+    $('.intentos-span').text(jugadorInfo.intentos).css('color', 'black');
+    guardarJugador(); //guarda la info dentro de jugadorInfo en el local storage 
+    armarRanking(); //muestra la info de los ganadores en una tabla dentro del modal
   }
   if (clicks === (niveles[jugadorInfo.nivel].intentos * 2) && aciertos < 6){
-    $('.p-mensaje').html('Perdiste! 😢'); //me falta hacer que muestre esto
-    $('#game-over').show();
-    //storeJugador();
+    $('#modal').removeClass('oculto');
+    $('#pierde').removeClass('oculto');
   }
-  jugarDeNuevo();
+}; 
+
+function guardarJugador (){
+  let jugadorJSON = localStorage.getItem('jugador');
+  if (jugadorJSON == null) {
+    jugadorJSON = []
+  } else {
+    jugadorJSON = JSON.parse(jugadorJSON)
+  }
+  jugadorJSON.push(jugadorInfo);
+  localStorage.setItem('jugador', JSON.stringify(jugadorJSON));
+};
+
+function armarTabla() {
+  let tablaJugadores = $('<table id="tablaRanking"></table>')
+  let cabecera = '<th>Nombre</th><th>Nivel</th><th>Intentos</th>'
+  tablaJugadores.append(cabecera)
+  let container = $('.ranking');
+  container.append(tablaJugadores);
+}
+
+function armarRanking() {
+  let infoJugador = JSON.parse(localStorage.getItem('jugador'));
+  let tablaJugadores = $('#tablaRanking');
+  for (let i = 0; i < infoJugador.length; i++) {
+    let nombreInfo = "<td>" + infoJugador[i].nombre + "</td>";
+    let nivelInfo = "<td>" + infoJugador[i].nivel + "</td>";
+    let intentosInfo = "<td>" + infoJugador[i].intentos + "</td>";
+
+    let fila = $('<tr class="fila"></tr>');
+    fila.append(nombreInfo);
+    fila.append(nivelInfo);
+    fila.append(intentosInfo);
+    tablaJugadores.append(fila);
+  }
 } 
 
 function jugarDeNuevo(){
-  $('#volver-jugar').on('click', function () {
-    intentos = 0;
+  $('.volver-jugar').on('click', function () {
+    $('.card').remove();
+    $('#modal').addClass('oculto');
+    $('#gana').addClass('oculto');
+    $('#pierde').addClass('oculto');
     clicks = 0;
     aciertos = 0;
     dosCartas = [];
-    $('.card').remove();
+    nivel = '';
+    location.reload();
   })
 }
-//me falta:
-//function storeJugador (){
-  //var usersJSON = JSON.stringify(users);
-  //localStorage.setItem('jugador', jugadorJSON);
-  //jugadorJSON = localStorage.getItem('jugador');
-  //jugador = JSON.parse(jugadorJSON);
-//}
 
 comienzo();
 loginJugador();
 shuffle(imagenes);
 crearTablero();
 jugar();
+armarTabla();
+jugarDeNuevo();
