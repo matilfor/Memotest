@@ -1,3 +1,10 @@
+#modal, .main-container .text-container .saludo .saludos, .main-container .text-container .nivel .niveles, .main-container .text-container .intentos-txt, .main-container .text-container, .inicio .error, .inicio .botones button, .inicio .question p, .inicio .inputNombre input, .inicio .text-inicio p {
+  font-family: "Pangolin", cursive;
+  font-size: 20px;
+  margin: 0;
+  line-height: 1;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -32,32 +39,18 @@ body {
   font-size: 40px;
   line-height: 2;
 }
-.inicio .text-inicio p {
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
-  margin: 0;
-  line-height: 1;
-}
 .inicio .inputNombre {
   display: block;
   text-align: center;
 }
 .inicio .inputNombre input {
   width: 300px;
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
 }
 .inicio .question {
   display: block;
   text-align: center;
   margin-top: 18px;
   margin-bottom: 8px;
-}
-.inicio .question p {
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
-  margin: 0;
-  line-height: 1;
 }
 .inicio .botones {
   display: block;
@@ -69,8 +62,6 @@ body {
   margin: auto;
   height: 40px;
   margin-top: 10px;
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
   color: white;
   background-color: #ff9802;
   border-radius: 10px;
@@ -92,8 +83,6 @@ body {
   height: 40px;
   background-color: pink;
   border-radius: 10px;
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
   color: brown;
 }
 
@@ -116,26 +105,13 @@ body {
   font-size: 40px;
   line-height: 1;
 }
-.main-container .text-container p {
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
-  margin: 0;
-  line-height: 1;
-}
 .main-container .text-container .intentos-txt .num-intentos {
   font-family: "Pacifico";
   color: #38acd5;
   font-size: 20px;
 }
-.main-container .text-container .nivel .niveles {
-  font-family: "Pangolin", cursive;
-  font-size: 20px;
-  margin: 0;
-}
 .main-container .text-container .saludo .saludos {
-  font-family: "Pangolin", cursive;
   font-size: 30px;
-  margin: 0;
 }
 .main-container .tablero {
   display: flex;
@@ -196,8 +172,7 @@ body {
   background-color: #f9e9dfcc;
   position: fixed;
   width: 100%;
-  height: 100vh;
-  left: 0;
+  height: 100%;
   top: 0;
 }
 #modal #gana {
@@ -206,9 +181,7 @@ body {
   color: black;
   z-index: 1;
   top: 10%;
-  height: auto;
   left: 25%;
-  right: 50%;
   position: absolute;
   padding: 50px;
   flex-direction: column;
@@ -230,7 +203,11 @@ body {
   width: 100%;
   padding: 5px;
   border-radius: 5px;
-  font-family: "Sniglet", cursive;
+  font-family: "Pangolin", cursive;
+}
+#modal #gana .botones .volver-jugar:hover {
+  background-color: #ffc75e;
+  cursor: pointer;
 }
 #modal #gana .ranking {
   width: 98%;
@@ -287,7 +264,11 @@ body {
   width: 100%;
   padding: 5px;
   border-radius: 5px;
-  font-family: "Sniglet", cursive;
+  font-family: "Pangolin", cursive;
+}
+#modal #pierde .botones .volver-jugar:hover {
+  background-color: #ffc75e;
+  cursor: pointer;
 }
 
 .oculto {
@@ -302,24 +283,39 @@ body {
 
 @media (max-width: 800px) {
   .inicio {
-    margin: auto;
     width: 80%;
-    height: 480px;
   }
-  .inicio .input input {
+  .inicio .inputNombre #name {
     width: 200px;
   }
   .inicio .botones button {
     width: 200px;
   }
+  .inicio .error {
+    width: 200px;
+  }
 
-  .main-container .second-container .img-container {
+  .main-container .text-container p {
+    line-height: 0;
+  }
+  .main-container .text-container .title {
+    line-height: 0.5;
+  }
+  .main-container .tablero {
     width: 100%;
   }
-  .main-container .second-container .img-container .card {
-    width: 26%;
-    height: 80px;
-    margin: 2px;
+  .main-container .tablero .card {
+    width: 25%;
+    height: 100px;
+  }
+
+  #modal #gana {
+    left: 10%;
+    top: 5px;
+  }
+  #modal #pierde {
+    top: 30%;
+    left: 10%;
   }
 }
 
