@@ -1,4 +1,4 @@
-# tp-02
+# Memotest
 Juego Memotest hecho con Html5, CSS3, SASS, Jquery, Javascript y JSON.
 Segundo trabajo práctico del Bootcamp de programación web front-end de ADA ITW. 
 Escrito en Visual Studio Code.
